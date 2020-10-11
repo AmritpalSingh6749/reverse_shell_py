@@ -5,8 +5,8 @@ import sys        # To execute command on the host system
 
 # Defining function in python to create a socket 
 def socketCreate(): 
-  global host=sys.argv[0]
-  global port=int(sys.argv[1])
+  global host=""
+  global port=int(sys.argv[0])
   # AF_INET is for address family ipv4, to use ipv6 change it with AF_INET6
   # SOCK_STREAM is to create TCP socket and SOCK_DGRAM is to create UDP socket
   global sock_s=socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
@@ -16,7 +16,7 @@ def connectSocket():
   global port
   global host
   # Combining socket, port, and ip to listen to connection
-  print"# Binding to ip }:-) "+host+":"+str(port)
+  print"# Binding to port }:-) "+str(port)
   sock_s.bind(host, port)
   # How many connections u want to accept, as default i am setting it to 1
   sock_s.listen(1)
@@ -33,7 +33,7 @@ def talkClient(conn):
   # Keep alive connection till u want to exit
   while true:
     msg=input()
-    if msg==quit:
+    if msg=="quit":
       return
     # To check if somehing is being sent or not
     if len(msg)>0:
