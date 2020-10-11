@@ -6,7 +6,9 @@ import sys        # To execute command on the host system
 # Defining function in python to create a socket 
 def socketCreate(): 
   global host=""
-  global port=int(sys.argv[0])
+  global port=8080
+  if int(sys.argv[0]):
+    port=int(sys.argv[0])
   # AF_INET is for address family ipv4, to use ipv6 change it with AF_INET6
   # SOCK_STREAM is to create TCP socket and SOCK_DGRAM is to create UDP socket
   global sock_s=socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
