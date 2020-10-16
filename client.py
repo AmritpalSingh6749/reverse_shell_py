@@ -5,7 +5,7 @@ import subprocess
 import socket
 #update this ip according to host
 host="127.0.0.1"
-port=8090
+port=8080
 def socketSend(sock):
     while True:
         cmd=sock.recv(1024)
