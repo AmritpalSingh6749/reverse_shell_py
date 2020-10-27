@@ -16,8 +16,8 @@ def connectSocket(host):
 	except:
 		print("\n Unable to bind.... check input given :\n Exiting")
 		return
-	# Listening to max 5 connection
-	sock_s.listen(5)
+	# Listening to max 1 connection, to listen to multiple connections parallel process need to be created using threading 
+	sock_s.listen(1)
 	# Accepting Socket, Host and Port of remote system
 	sock_c, addr = sock_s.accept()
 	print("\n # Connected to host:port : "+str(addr[0])+" : "+str(addr[1]))
